@@ -1,6 +1,29 @@
 # Open Tofu, AWS, Apache Flink
 
 
+### Diagram
+
+```mermaid
+graph TD
+    subgraph EC2 Instance 1
+        JM[Job Manager]
+    end
+    subgraph EC2 Instance 2
+        TM1[Task Manager 1]
+    end
+    subgraph EC2 Instance 3
+        TM2[Task Manager 2]
+    end
+    subgraph EC2 Instance 4
+        TM3[Task Manager 3]
+    end
+
+    JM -->|manages| TM1
+    JM -->|manages| TM2
+    JM -->|manages| TM3
+```
+
+
 ### Estimated cost
 
 ```
