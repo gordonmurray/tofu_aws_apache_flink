@@ -17,7 +17,7 @@
             "launch_block_device_mappings": [
                 {
                     "device_name": "/dev/sda1",
-                    "volume_size": 20,
+                    "volume_size": 50,
                     "volume_type": "gp2"
                 }
             ],
@@ -35,9 +35,9 @@
                 "echo 'debconf debconf/frontend select Noninteractive' | sudo debconf-set-selections",
                 "sudo apt-get update",
                 "sudo apt-get install openjdk-11-jre openjdk-11-jdk openjdk-11-jre-headless software-properties-common curl gnupg unzip -y",
-                "wget wget https://downloads.apache.org/flink/flink-1.17.2/flink-1.17.2-bin-scala_2.12.tgz",
+                "wget https://downloads.apache.org/flink/flink-1.17.2/flink-1.17.2-bin-scala_2.12.tgz",
                 "tar -xvzf flink-1.17.2-bin-scala_2.12.tgz",
-                "mv flink-1.17.2 flink"
+                "mv /home/ubuntu/flink-1.17.2 /home/ubuntu/flink"
             ]
         },
         {
