@@ -1,6 +1,23 @@
 # Open Tofu, AWS, Apache Flink
 
 
+### Create a base image AMI using Packer
+
+First, add your VPC IP and Subnet in to packer/variables.json
+
+Validate the packer file
+
+```
+packer validate --var-file=variables.json flink.json
+```
+
+Build the AMI from the packer file
+
+```
+packer build --var-file=variables.json flink.json
+```
+
+
 ### Flink cluster diagram
 
 A diagram of the resulting Flink cluster created using this Tofu project:
@@ -29,23 +46,23 @@ graph TD
 ### Estimated cost
 
 ```
+Project: gordonmurray/tofu_aws_apache_flink
 
- Name                                                 Monthly Qty  Unit     Monthly Cost
+ Name                                                  Monthly Qty  Unit     Monthly Cost
 
  aws_autoscaling_group.flink_taskmanagers_spot
  └─ aws_launch_template.flink_taskmanagers_spot
-    ├─ Instance usage (Linux/UNIX, spot, m5.large)            730  hours          $29.27
-    ├─ EBS-optimized usage                                    730  hours           $0.00
-    ├─ EC2 detailed monitoring                                  7  metrics         $2.10
+    ├─ Instance usage (Linux/UNIX, spot, m7g.large)            730  hours          $26.21
+    ├─ EC2 detailed monitoring                                   7  metrics         $2.10
     └─ block_device_mapping[0]
-       └─ Storage (general purpose SSD, gp2)                   50  GB              $5.00
+       └─ Storage (general purpose SSD, gp2)                    50  GB              $5.00
 
  aws_instance.flink_job_managers[0]
- ├─ Instance usage (Linux/UNIX, on-demand, m5.large)          730  hours          $70.08
+ ├─ Instance usage (Linux/UNIX, on-demand, m7g.large)          730  hours          $59.57
  └─ root_block_device
-    └─ Storage (general purpose SSD, gp3)                      50  GB              $4.00
+    └─ Storage (general purpose SSD, gp3)                       50  GB              $4.00
 
- OVERALL TOTAL                                                                   $110.45
+ OVERALL TOTAL                                                                     $96.88
 ──────────────────────────────────
 10 cloud resources were detected:
 ∙ 2 were estimated, all of which include usage-based costs, see https://infracost.io/usage-file
@@ -61,6 +78,6 @@ graph TD
 ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━┓
 ┃ Project                                            ┃ Monthly cost ┃
 ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━┫
-┃ .                                                  ┃ $110         ┃
+┃ gordonmurray/tofu_aws_apache_flink                 ┃ $97          ┃
 ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━┛
 ```
