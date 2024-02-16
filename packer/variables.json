@@ -1,0 +1,8 @@
+{
+    "vpc_id": "vpc-0f5c6fe0942b200b2",
+    "subnet_id": "subnet-0ab905041b3f9aa0b",
+    "base_ami_id": "ami-0a1b36900d715a3ad",
+    "region": "eu-west-1",
+    "instance_type": "t4g.large",
+    "profile": "default"
+  }
