@@ -28,12 +28,12 @@ variable "tags" {
 
 variable "flink_jobmanager_instance_type" {
   type    = string
-  default = "m5.large"
+  default = "m7g.large"
 }
 
 variable "flink_taskmanager_instance_type" {
   type    = string
-  default = "m5.large"
+  default = "m7g.large"
 }
 
 variable "flink_jobmanager_instance_count" {
