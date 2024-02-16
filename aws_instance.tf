@@ -1,5 +1,5 @@
 resource "aws_instance" "flink_job_managers" {
-  ami                     = "ami-016485166ec7fa705" # ARM based Ubuntu 22.04 LTS
+  ami                     = data.aws_ami.flink_ami.id
   instance_type           = var.flink_jobmanager_instance_type
   count                   = var.flink_jobmanager_instance_count
   key_name                = aws_key_pair.flink.key_name

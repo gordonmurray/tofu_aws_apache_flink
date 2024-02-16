@@ -4,7 +4,7 @@ variable "aws_account_id" {
 
 variable "aws_region" {
   type    = string
-  default = "us-east-1"
+  default = "eu-west-1"
 }
 
 variable "vpc_id" {
@@ -31,9 +31,14 @@ variable "flink_jobmanager_instance_type" {
   default = "m7g.large"
 }
 
-variable "flink_taskmanager_instance_type" {
+variable "flink_taskmanager_instance_type_1" {
   type    = string
   default = "m7g.large"
+}
+
+variable "flink_taskmanager_instance_type_2" {
+  type    = string
+  default = "m7g.xlarge"
 }
 
 variable "flink_jobmanager_instance_count" {
