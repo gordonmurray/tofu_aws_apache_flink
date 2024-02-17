@@ -1,3 +1,16 @@
+data "template_file" "init_script" {
+  template = <<-EOF
+      #!/bin/bash
+
+      # Wait for the system to start up fully
+      sleep 30
+
+      # Pass the public IP address of the job manager to the configuration file
+      sed -i "s/ACTUAL_IP_ADDRESS/${aws_instance.flink_job_managers[0].public_ip}/g" /home/ubuntu/flink/conf/flink-conf.yaml
+
+      su - ubuntu -c '/home/ubuntu/flink/bin/taskmanager.sh start
+    EOF
+}
 
 resource "aws_launch_template" "flink_taskmanagers_spot_1" {
   name                                 = "flink-taskmanager-template-spot-1"
@@ -9,21 +22,7 @@ resource "aws_launch_template" "flink_taskmanagers_spot_1" {
   instance_type                        = var.flink_taskmanager_instance_type_1
   key_name                             = aws_key_pair.flink.key_name
   vpc_security_group_ids               = [aws_security_group.flink_security_group.id]
-
-  user_data = base64encode(<<-EOF
-    #!/bin/bash
-
-    # Wait for the system to start up fully
-    sleep 30
-
-    # Get the IP address of the instance
-    TOKEN=`curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"`
-    PUBLIC_IP=$(curl -H "X-aws-ec2-metadata-token: $TOKEN" http://169.254.169.254/latest/meta-data/public-ipv4)
-    sed -i "s/ACTUAL_IP_ADDRESS/$PUBLIC_IP/g" /home/ubuntu/flink/conf/flink-conf.yaml
-
-    /home/ubuntu/flink/bin/taskmanager.sh start
-    EOF
-  )
+  user_data                            = data.template_file.init_script.rendered
 
   instance_market_options {
     market_type = "spot"
@@ -73,6 +72,7 @@ resource "aws_launch_template" "flink_taskmanagers_spot_2" {
   instance_type                        = var.flink_taskmanager_instance_type_2
   key_name                             = aws_key_pair.flink.key_name
   vpc_security_group_ids               = [aws_security_group.flink_security_group.id]
+  user_data                            = data.template_file.init_script.rendered
 
   instance_market_options {
     market_type = "spot"
