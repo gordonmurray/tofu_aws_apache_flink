@@ -1,14 +1,14 @@
-jobmanager.rpc.address: localhost
+jobmanager.rpc.address: ACTUAL_IP_ADDRESS
 
 jobmanager.rpc.port: 6123
 
-jobmanager.bind-host: localhost
+jobmanager.bind-host: 0.0.0.0
 
 jobmanager.memory.process.size: 1600m
 
-taskmanager.bind-host: localhost
+taskmanager.bind-host: 0.0.0.0
 
-taskmanager.host: localhost
+taskmanager.host: 0.0.0.0
 
 taskmanager.memory.process.size: 1728m
 
@@ -18,6 +18,6 @@ parallelism.default: 1
 
 jobmanager.execution.failover-strategy: region
 
-rest.address: localhost
+rest.address: 0.0.0.0
 
-rest.bind-address: localhost
+rest.bind-address: 0.0.0.0
