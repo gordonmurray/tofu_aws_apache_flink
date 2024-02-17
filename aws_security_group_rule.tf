@@ -1,21 +1,11 @@
 # JobManager RPC Port
 resource "aws_security_group_rule" "jobmanager_rpc" {
-  type                     = "ingress"
-  from_port                = 6123
-  to_port                  = 6123
-  protocol                 = "tcp"
-  source_security_group_id = aws_security_group.flink_security_group.id
-  security_group_id        = aws_security_group.flink_security_group.id
-}
-
-# Blob Server Port
-resource "aws_security_group_rule" "blob_server" {
-  type                     = "ingress"
-  from_port                = 0
-  to_port                  = 65535
-  protocol                 = "tcp"
-  source_security_group_id = aws_security_group.flink_security_group.id
-  security_group_id        = aws_security_group.flink_security_group.id
+  type              = "ingress"
+  from_port         = 6123
+  to_port           = 6123
+  protocol          = "tcp"
+  cidr_blocks       = ["0.0.0.0/0"]
+  security_group_id = aws_security_group.flink_security_group.id
 }
 
 # Queryable State Server Port
@@ -41,8 +31,8 @@ resource "aws_security_group_rule" "flink_ui" {
 # Data Transfer Ports
 resource "aws_security_group_rule" "data_transfer" {
   type                     = "ingress"
-  from_port                = 1024  // Starting port for data transfer range
-  to_port                  = 65535 // Ending port for data transfer range
+  from_port                = 1024
+  to_port                  = 65535
   protocol                 = "tcp"
   source_security_group_id = aws_security_group.flink_security_group.id
   security_group_id        = aws_security_group.flink_security_group.id
