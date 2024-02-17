@@ -1,5 +1,5 @@
 resource "aws_autoscaling_group" "flink_taskmanagers_spot_1" {
-  name                      = "flink-taskmanager-asg-spot"
+  name                      = "flink-taskmanager-asg-spot-1"
   desired_capacity          = 1
   max_size                  = 3
   min_size                  = 1
@@ -23,7 +23,7 @@ resource "aws_autoscaling_group" "flink_taskmanagers_spot_1" {
 }
 
 resource "aws_autoscaling_group" "flink_taskmanagers_spot_2" {
-  name                      = "flink-taskmanager-asg-spot"
+  name                      = "flink-taskmanager-asg-spot-2"
   desired_capacity          = 1
   max_size                  = 3
   min_size                  = 1
