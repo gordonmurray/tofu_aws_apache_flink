@@ -2,7 +2,7 @@
 
 Using OpenTofu to create an Apache Flink cluster, with Task Managers in an auto scaling group of Spot instances to help reduce costs
 
-### Create a base image AMI using Packer
+### 1. Create a base image AMI using Packer
 
 First, add your VPC IP and Subnet in to packer/variables.json
 
@@ -16,6 +16,35 @@ Build the AMI from the packer file
 
 ```
 packer build --var-file=variables.json flink.json
+```
+
+
+### 2. Enable Ansible
+
+Install Ansible
+
+```
+sudo apt install ansible -y
+```
+
+Install the Ansible provider for Terraform
+```
+ansible-galaxy collection install cloud.terraform
+```
+
+### Debugging Ansible playbook
+
+Tofu runs the Ansible playbook automatically. If you'd like to record its output, you can set an ANSIBLE_LOG_PATH environment variable.
+
+```
+export ANSIBLE_LOG_PATH=./ansible.log
+```
+
+In `ansible_playbook.tf`, there are 2 variables that are useful to change if you want the playbook to run every time you run Tofu, or if you'd like Tofu to stop if there are Ansible errors.
+
+```
+replayable              = true # set to true if you want to run the playbook every time
+ignore_playbook_failure = true # set to true if you want Tofu to keep running if there is an Ansible error
 ```
 
 

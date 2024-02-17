@@ -45,18 +45,3 @@ variable "flink_jobmanager_instance_count" {
   type    = number
   default = 1
 }
-
-variable "task_manager_slots" {
-  type    = number
-  default = 4
-}
-
-variable "jobmanager_memory_size" {
-  type    = number
-  default = 4096
-}
-
-variable "kafka_brokers" {
-  type    = string
-  default = ""
-}
