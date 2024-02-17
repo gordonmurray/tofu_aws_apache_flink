@@ -42,8 +42,8 @@
         },
         {
             "type": "file",
-            "source": "./files/flink.conf",
-            "destination": "/home/ubuntu/flink/conf/flink.conf"
+            "source": "./files/flink-conf.yaml",
+            "destination": "/home/ubuntu/flink/conf/flink-conf.yaml"
         }
     ]
 }
