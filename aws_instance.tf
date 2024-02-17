@@ -9,6 +9,16 @@ resource "aws_instance" "flink_job_managers" {
   iam_instance_profile    = aws_iam_instance_profile.ec2_s3_write_profile.id
   tags                    = var.tags
 
+  user_data = base64encode(<<-EOF
+    #!/bin/bash
+
+    # Wait for the system to start up fully
+    sleep 30
+
+    /home/ubuntu/flink/bin/jobmanager.sh start
+    EOF
+  )
+
   root_block_device {
     delete_on_termination = true
     encrypted             = true

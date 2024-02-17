@@ -10,6 +10,16 @@ resource "aws_launch_template" "flink_taskmanagers_spot_1" {
   key_name                             = aws_key_pair.flink.key_name
   vpc_security_group_ids               = [aws_security_group.flink.id]
 
+  user_data = base64encode(<<-EOF
+    #!/bin/bash
+
+    # Wait for the system to start up fully
+    sleep 30
+
+    /home/ubuntu/flink/bin/taskmanager.sh start
+    EOF
+  )
+
   instance_market_options {
     market_type = "spot"
   }
