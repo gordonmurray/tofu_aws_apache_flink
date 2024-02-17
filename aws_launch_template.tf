@@ -22,7 +22,7 @@ resource "aws_launch_template" "flink_taskmanagers_spot_1" {
   instance_type                        = var.flink_taskmanager_instance_type_1
   key_name                             = aws_key_pair.flink.key_name
   vpc_security_group_ids               = [aws_security_group.flink_security_group.id]
-  user_data                            = data.template_file.init_script.rendered
+  user_data                            = base64encode(data.template_file.init_script.rendered)
 
   instance_market_options {
     market_type = "spot"
@@ -72,7 +72,7 @@ resource "aws_launch_template" "flink_taskmanagers_spot_2" {
   instance_type                        = var.flink_taskmanager_instance_type_2
   key_name                             = aws_key_pair.flink.key_name
   vpc_security_group_ids               = [aws_security_group.flink_security_group.id]
-  user_data                            = data.template_file.init_script.rendered
+  user_data                            = base64encode(data.template_file.init_script.rendered)
 
   instance_market_options {
     market_type = "spot"
