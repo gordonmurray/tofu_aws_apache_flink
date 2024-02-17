@@ -72,11 +72,11 @@ tofu apply
 
 Once Tofu has finished, it will show an endpoint you can open in your browser, similar to `http://localhost:8083`. This will open up the Flink UI in your browser.
 
-![Flink UI]({{ site.url }}/images/flink_ui.png)
+![Flink UI](/images/flink_ui.png)
 
 In your AWS account you will see 3 new EC2 instances.
 
-![AWS Console]({{ site.url }}/images/ec2_instances.png)
+![AWS Console](/images/ec2_instances.png)
 
 ### 5. Adding Flink workloads
 
