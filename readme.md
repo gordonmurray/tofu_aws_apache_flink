@@ -1,5 +1,6 @@
 # Open Tofu, AWS, Apache Flink
 
+Using OpenTofu to create an Apache Flink cluster, with Task Managers in an auto scaling group of Spot instances to help reduce costs
 
 ### Create a base image AMI using Packer
 
