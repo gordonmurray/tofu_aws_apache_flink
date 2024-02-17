@@ -25,24 +25,23 @@ A diagram of the resulting Flink cluster created using this Tofu project:
 
 ```mermaid
 graph TD
-    subgraph On-demand EC2 Instance
+    subgraph On-demand EC2 instance
         JM[Flink Job Manager]
     end
-    subgraph EC2 Spot Instance
-        TM1[Flink Task Manager 3]
+    subgraph Spot group 2
+        TM1A[Task Manager]
+        TM2A[Task Manager]
     end
-    subgraph EC2 Spot Instance
-        TM2[Flink Task Manager 2]
-    end
-    subgraph EC2 Spot Instance
-        TM3[Flink Task Manager 1]
+    subgraph Spot group 1
+        TM1B[Task Manager]
+        TM2B[Task Manager]
     end
 
-    JM -->|manages| TM1
-    JM -->|manages| TM2
-    JM -->|manages| TM3
+    JM -->|manages| TM1A
+    JM -->|manages| TM2A
+    JM -->|manages| TM1B
+    JM -->|manages| TM2B
 ```
-
 
 ### Estimated cost
 
