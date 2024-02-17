@@ -28,7 +28,7 @@ variable "tags" {
 
 variable "flink_jobmanager_instance_type" {
   type    = string
-  default = "m7g.large"
+  default = "t4g.large"
 }
 
 variable "flink_taskmanager_instance_type_1" {
