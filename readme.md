@@ -89,3 +89,8 @@ Project: gordonmurray/tofu_aws_apache_flink
 ┃ gordonmurray/tofu_aws_apache_flink                 ┃ $166         ┃
 ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━┛
 ```
+
+#### Notes
+
+* This project deploys the instances in a public subnet. For a real world deployment it is best to deploy in to a private subnet.
+* If you want to remove the Flink cluster and its resources, use `tofu destroy`.
