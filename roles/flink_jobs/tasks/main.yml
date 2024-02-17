@@ -1,0 +1,12 @@
+- name: Interpolate the query template and upload it to a Job Manager host
+  ansible.builtin.template:
+    src: queries.sql.j2
+    dest: /home/ubuntu/queries.sql
+    owner: ubuntu
+    group: ubuntu
+    mode: "0644"
+
+- name: Submit the Job to the Job Manager
+  ansible.builtin.command:
+    cmd: "/home/ubuntu/flink/bin/sql-client.sh embedded -f queries.sql"
+  register: job_output

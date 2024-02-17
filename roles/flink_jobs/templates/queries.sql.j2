@@ -1,0 +1,13 @@
+CREATE TEMPORARY TABLE Events (
+    id INT,
+    message STRING
+) WITH (
+    'connector' = 'datagen',
+    'rows-per-second'='5',
+    'fields.id.kind'='random',
+    'fields.id.min'='1',
+    'fields.id.max'='100',
+    'fields.message.length'='10'
+);
+
+SELECT * FROM Events;

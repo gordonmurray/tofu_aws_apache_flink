@@ -1,0 +1,10 @@
+- name: Flink Job Manager playbook
+
+  hosts: all
+
+  gather_facts: false
+
+  become: true
+
+  roles:
+    - flink_jobs # submit any flink SQL jobs
